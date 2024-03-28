@@ -3,8 +3,6 @@ import matplotlib.pyplot as plt
 import time
 
 
-# Question 4
-
 def t1(j, l, s, est_noire):
     
     """
@@ -67,7 +65,6 @@ def T1(j, l, s):
     return t1(j, l, s, True)
 
 
-# Quesion 7
 
 def T2(j, l, s, ligne):
     
@@ -157,8 +154,6 @@ def T2(j, l, s, ligne):
         
         return True
 
-
-# Question 9
 
 def lire_fichier(fichier):
     

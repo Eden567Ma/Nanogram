@@ -1,4 +1,4 @@
-# Importation des bibliothèques nécessaires
+
 import matplotlib.pyplot as plt
 import time
 
@@ -171,7 +171,7 @@ def lire_fichier(fichier):
     
     deja_vu = False
     
-    # ouvre un fichier pour extraire les resultats attendu
+    
     with open(fichier, 'r') as f:
             
         lines = f.readlines()
@@ -212,7 +212,6 @@ def color_rec(j, l, s, ligne):
         Liste correspondant à une ligne de la grille (0 : non coloriée, 1 : coloriée en blanc, 2 : coloriée en noir)
     """
 
-    # Vérification si les cases respectent bien notre modèle (0, 1 ou 2 uniquement)
     if ligne[j] != 0 and ligne[j] != 1 and ligne[j] != 2:
         return False
     
@@ -285,11 +284,10 @@ def color_rec(j, l, s, ligne):
 
             return color_rec(j-s[l-1]-1, l-1, s, ligne)
         
-        # Hypothèse selon laquelle la case suivante est coloriée en blanc
+      
         hyp_blanc = ligne[:j] + [1]
         ligne_blanc = color_rec(j, l, s, hyp_blanc)   
 
-        # Hypothèse selon laquelle la case suivante est coloriée en noir
         hyp_noir = ligne[:j] + [2]
         ligne_noir = color_rec(j, l, s, hyp_noir)
         
@@ -341,7 +339,6 @@ def color_lig(grille, ligne, fichier):
     lig = grille[ligne]
     lig2 = lig.copy()
     
-    # récupération des séquences de lignes du fichier
     lignes, _ = lire_fichier(fichier)   
     s = lignes[ligne]
     
@@ -349,7 +346,6 @@ def color_lig(grille, ligne, fichier):
     if not(T2(len(lig)-1, len(s), s, lig)):
         return False, grille, nouveaux
     
-    # coloriage de la ligne de manière récursive
     color_rec(len(lig)-1, len(s), s, lig)   
     
     grille[ligne] = lig
@@ -390,15 +386,14 @@ def color_col(grille, colonne, fichier):
         col.append(grille[l][colonne])
     col2 = col.copy()
     
-    # récupération des séquences de colonnes du fichier
+
     _, colonnes = lire_fichier(fichier)
     s = colonnes[colonne]
     
     # vérification si T(j,l) vrai
     if not(T2(len(col)-1, len(s), s, col)):
         return False, grille, nouveaux
-    
-    # coloriage de la colonne de manière récursive
+
     color_rec(len(col)-1, len(s), s, col)   
     
     nouveaux = {i for i in range(0, len(col)) if col[i] != col2[i]}
